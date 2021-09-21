@@ -1,3 +1,4 @@
 /log
-/src/config/config.js
 .idea/
+/src/config/*
+!/src/config/example.js

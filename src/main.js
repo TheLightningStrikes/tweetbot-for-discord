@@ -1,4 +1,4 @@
-const config = require('./config/config');
+const config = require((process.env.CONFIGFILE || './config/config'));
 const logger = require('./helpers/logger');
 const twitter = require('./twitter/twitter');
 const discord = require('./discord/discord')
