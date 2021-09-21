@@ -3,9 +3,10 @@ A simple Node.js bot to retrieve posts and quoted retweets from a Twitter user a
 
 ## Table of contents
 * [Getting Started](#getting-started)
-    * [Prerequisites](#Prerequisites)
+    * [Prerequisites](#prerequisites)
     * [Installation](#installation)
     * [Running the code](#running-the-code)
+      * [Multiple instances setup](#multiple-instances-setup)
 * [Built with](#built-with)
 
 ## Getting Started
@@ -25,10 +26,17 @@ Pull the code from GitHub.
 
 Check out the [example configuration file](./src/config/example.js) and set up a `config.js` file in the same directory with your settings.
 
-**If you don't do this, the code won't run.**
+**You need a configuration file or the code won't run.**
+
+Alternatively you can set up multiple configurations by using the `CONFIG_FILE` environment variable.
+See [Multiple instances setup](#multiple-instances-setup).
 
 ### Running the code
 Use `npm start` in a terminal like _CMD_ to run the code.
+
+#### Multiple instances setup
+Run the code multiple times with different configuration files by using the `CONFIG_FILE` environment variable.
+Place all configuration files in the `config` folder and reference just the name of the file in the variable.
 
 ## Built with
 * [Node.js](https://nodejs.org/en/)
