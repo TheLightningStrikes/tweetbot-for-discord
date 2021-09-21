@@ -24,6 +24,7 @@ to set up your channel and bot.
 Pull the code from GitHub.
 
 Check out the [example configuration file](./src/config/example.js) and set up a `config.js` file in the same directory with your settings.
+
 **If you don't do this, the code won't run.**
 
 ### Running the code
