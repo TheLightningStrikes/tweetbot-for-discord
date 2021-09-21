@@ -40,17 +40,17 @@ function sendPost(tweet) {
         const req = https.request(options, res => {
             logger.info(`Discord API status code: ${res.statusCode} ${res.statusMessage}`);
             logger.debug('Response headers:', res.headers);
-
-            res.on('data', data => {
-                logger.info('Post to Discord successful');
-                resolve(data);
-            });
         })
 
         req.on('error', error => {
             logger.warn('An error has occurred while posting to Discord:', error);
             resolve();
         });
+
+        req.on('close', () => {
+            logger.info('Finished posting to Discord');
+            resolve();
+        })
 
         req.write(data);
         req.end();
