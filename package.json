@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "start": "node src/main.js"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "engines": {
+    "node": "10.x"
+  }
+}
