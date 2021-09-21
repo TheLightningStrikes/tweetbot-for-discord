@@ -30,8 +30,8 @@ function getTweets(query) {
                 data = JSON.parse(data);
                 logger.debug('Response data', data);
                 logger.info(`Filtering ${data.meta['result_count']} tweets`);
-                let tweets = [];
 
+                let tweets = [];
                 for (let id in data.data) {
                     let tweet = data.data[id];
                     if (isPost(tweet) || isQuotedRetweet(tweet)) {
@@ -40,6 +40,7 @@ function getTweets(query) {
                 }
 
                 logger.info(`Found ${tweets.length} new tweets`);
+                logger.debug('Tweets:', tweets);
                 resolve(tweets);
             })
         })

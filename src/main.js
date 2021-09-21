@@ -6,12 +6,13 @@ const timeConverter = require('./helpers/millisecondsConverter');
 
 const timer_delay = config.bot_settings.timer_delay;
 const logFile = config.bot_settings.logfile;
+const query = config.twitter.query;
 
 if (logFile) {
     logger.initLogFile();
 }
 
-checkTweets(0);
+checkTweets(timer_delay);
 
 /*
  * Polls tweets from a user every x milliseconds, then posts these to a Discord channel
@@ -24,14 +25,14 @@ function checkTweets(delay) {
     let date = new Date(Date.now()-delay);
     let start_time = date.toISOString(); // Twitter wants an ISO string..
 
-    twitter.getTweets(config.twitter.query+start_time).then((tweets) => {
+    twitter.getTweets(query+start_time).then((tweets) => {
             const promises = [];
-            for (let tweet in tweets) {
-                promises.push(discord.sendPost(tweet));
+            for (let id in tweets) {
+                promises.push(discord.sendPost(tweets[id]));
             }
             Promise.all(promises).then(() => {
-                logger.info(`Polling again in ${timeConverter.convertMilliseconds(timer_delay)}`);
-                setTimeout(() => checkTweets(timer_delay), timer_delay)
+                logger.info(`Polling again in ${timeConverter.convertMilliseconds(delay)}`);
+                setTimeout(() => checkTweets(delay), delay)
             });
         }
     )
