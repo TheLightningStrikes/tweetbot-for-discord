@@ -1,4 +1,4 @@
-const config = require("../config/config");
+const config = require("../config/"+(process.env.CONFIG_FILE || "config"));
 const https = require("https");
 const logger = require("../helpers/logger")
 

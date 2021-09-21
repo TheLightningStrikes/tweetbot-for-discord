@@ -1,4 +1,4 @@
-const config = require("../config/config");
+const config = require("../config/"+(process.env.CONFIG_FILE || "config"));
 const fs = require('fs');
 const {resolve} = require("path");
 
@@ -109,7 +109,7 @@ function silly(message, data) {
 /*
  * Logs a statement to the console
  *
- * If logfile is set to true in config.js, also logs to a logfile
+ * If logfile is set to true in config-apache.js, also logs to a logfile
  * @param level {string} The loglevel
  * @param message {string} The log message
  * @param data {Object} Optional data to log
