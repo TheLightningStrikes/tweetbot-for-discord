@@ -34,6 +34,7 @@ function getTweets(query) {
                 let tweets = [];
                 for (let id in data.data) {
                     let tweet = data.data[id];
+                    logger.debug('Referenced Tweet', tweet.referenced_tweets);
                     if (isPost(tweet) || isQuotedRetweet(tweet)) {
                         tweets.push(tweet);
                     }
@@ -73,7 +74,17 @@ function isPost(tweet) {
  * @return {boolean}
  */
 function isQuotedRetweet(tweet) {
-    return tweet["referenced_tweets"]["type"] === 'quoted';
+    let isQuotedRetweet = false;
+    const referenced_tweets = tweet["referenced_tweets"];
+    if (referenced_tweets) {
+        for (let id in tweet["referenced_tweets"]) {
+            if (tweet["referenced_tweets"][id]["type"] === 'quoted') {
+                isQuotedRetweet = true;
+                break;
+            }
+        }
+    }
+    return isQuotedRetweet;
 }
 
 exports.getTweets = getTweets;
